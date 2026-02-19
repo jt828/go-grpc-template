@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package proto.v1;
+
+option go_package = "github.com/jt828/go-grpc-template/proto/v1;v1";
+
+import "google/protobuf/timestamp.proto";
+
+service UserService {
+  rpc GetUserById (GetUserByIdRequest) returns (GetUserByIdResponse) {}
+  rpc CreateUser (CreateUserRequest) returns (CreateUserResponse) {}
+}
+
+message GetUserByIdRequest {
+  int64 id = 1;
+}
+
+message GetUserByIdResponse {
+  int64 id = 1;
+  string email = 2;
+  string username = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
+}
+
+message CreateUserRequest {
+  int64 idempotency_id = 1;
+  string email = 2;
+  string username = 3;
+  string password = 4;
+}
+
+message CreateUserResponse {
+  int64 id = 1;
+  string email = 2;
+  string username = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
+}
